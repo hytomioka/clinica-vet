@@ -16,7 +16,7 @@ public class Pet extends EntidadeBase {
     private Integer tipoDoPet;
 
     @Column(name = "idade")
-    private LocalDate dataDeNascimento;
+    private Integer idade;
 
     @ManyToOne
     @JoinColumn(name = "dono_id")
@@ -38,19 +38,19 @@ public class Pet extends EntidadeBase {
         this.tipoDoPet = tipo;
     }
 
-    public LocalDate getDataDeNascimento() {
-        return dataDeNascimento;
-    }
-
-    public void setDataDeNascimento(LocalDate dataDeNascimento) {
-        this.dataDeNascimento = dataDeNascimento;
-    }
-
     public Dono getDono() {
         return dono;
     }
 
     public void setDono(Dono dono) {
         this.dono = dono;
+    }
+
+    public Integer getIdade() {
+        return idade;
+    }
+
+    public void setIdade(Integer idade) {
+        this.idade = idade;
     }
 }
