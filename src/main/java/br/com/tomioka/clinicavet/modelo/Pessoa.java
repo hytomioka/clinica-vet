@@ -1,9 +1,18 @@
 package br.com.tomioka.clinicavet.modelo;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class Pessoa extends EntidadeBase {
 
+    @Column(name = "nome")
     private String nome;
+
+    @Column(name = "idade")
     private Integer idade;
+
+    @Column(name = "email")
     private String email;
 
     public String getNome() {
