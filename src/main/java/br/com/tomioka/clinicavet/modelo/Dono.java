@@ -1,5 +1,7 @@
 package br.com.tomioka.clinicavet.modelo;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -13,6 +15,7 @@ public class Dono extends Pessoa {
     @Column(name = "endereco")
     private String Endereco;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "dono")
     private List<Pet> pets;
 

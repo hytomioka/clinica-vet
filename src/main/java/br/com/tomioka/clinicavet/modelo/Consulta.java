@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @Table(name = "consulta")
 public class Consulta extends EntidadeBase {
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:SS:ss")
     @Column(name = "data_horario")
     private LocalDateTime horario;
 

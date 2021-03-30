@@ -1,14 +1,17 @@
 INSERT INTO DONO(nome, email, idade, endereco)
-VALUES('José Roberto', 'joser@email.com', '32', 'Rua das Flores, 10');
+VALUES('Beatriz', 'beatriz@email.com', '20', 'Rua das Flores, 10');
 
 INSERT INTO DONO(nome, email, idade, endereco)
-VALUES('Ana Maria', 'anamaria@email.com', '23', 'Rua Vertentes, 26');
+VALUES('José', 'jose@email.com', '23', 'Rua Vertentes, 26');
 
 INSERT INTO PET(nome, idade, tipo_pet, dono_id)
-VALUES('Nego', '5', '1', '1');
+VALUES('Nego', '6', '1', '1');
 
 INSERT INTO PET(nome, idade, tipo_pet, dono_id)
-VALUES('Pantera', '2', '2', '1');
+VALUES('Neguinho', '5', '1', '1');
+
+INSERT INTO PET(nome, idade, tipo_pet, dono_id)
+VALUES('Pantera', '1', '2', '1');
 
 INSERT INTO PET(nome, idade, tipo_pet, dono_id)
 VALUES('Dolly', '8', '1', '2');
