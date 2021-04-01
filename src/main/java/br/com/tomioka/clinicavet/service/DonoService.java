@@ -29,4 +29,13 @@ public class DonoService {
         Dono obj = donoRepository.save(dono);
         return obj;
     }
+
+    @Transactional
+    public Dono atualiza(int id, Dono dono) {
+        Dono obj = buscaPorId(id);
+        obj.setNome(dono.getNome());
+        obj.setEndereco(dono.getEndereco());
+        obj = donoRepository.save(obj);
+        return obj;
+    }
 }

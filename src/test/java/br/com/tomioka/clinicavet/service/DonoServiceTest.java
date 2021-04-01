@@ -5,13 +5,18 @@ import br.com.tomioka.clinicavet.repository.DonoRepository;
 import br.com.tomioka.clinicavet.service.exceptions.ObjectNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import javax.lang.model.util.Types;
+import javax.management.ConstructorParameters;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 class DonoServiceTest {
@@ -22,6 +27,9 @@ class DonoServiceTest {
     private DonoRepository repo;
 
     private Optional<Dono> dono;
+
+    @Captor
+    private ArgumentCaptor<Dono> captor;
 
     @BeforeEach
     public void setUp() {
@@ -53,10 +61,31 @@ class DonoServiceTest {
         assertTrue(donoMock != null);
     }
 
+    @Test
+    void deveriaAtualizarUmDonoSalvoNoRepositorio() {
+        Dono donoTesteAtualizado = criaDonoDeTesteParaAtualizarCampos();
+        when(repo.findById(any())).thenReturn(dono);
+        service.atualiza(dono.get().getId(), donoTesteAtualizado);
+        verify(repo).save(captor.capture());
+        Dono donoAtualizado = captor.getValue();
+
+        assertEquals("Ana Clara", donoAtualizado.getNome());
+        assertEquals("Rua engenheiro Borges, 32", donoAtualizado.getEndereco());
+    }
+
     public void criaDonoDeTeste() {
         this.dono = Optional.of(new Dono());
         dono.get().setId(1);
         dono.get().setNome("Ana");
         dono.get().setEmail("ana@gmail.com");
+        dono.get().setEndereco("Rua das pipas, 48");
+    }
+
+    public Dono criaDonoDeTesteParaAtualizarCampos() {
+        Dono donoAtualizaCampos = new Dono();
+        donoAtualizaCampos.setId(1);
+        donoAtualizaCampos.setNome("Ana Clara");
+        donoAtualizaCampos.setEndereco("Rua engenheiro Borges, 32");
+        return donoAtualizaCampos;
     }
 }

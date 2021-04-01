@@ -19,7 +19,7 @@ public class DonoController {
         this.donoService = donoService;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Dono> busca(@PathVariable("id") int id) {
         Dono dono = donoService.buscaPorId(id);
         return ResponseEntity.ok().body(dono);
@@ -31,5 +31,11 @@ public class DonoController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> atualiza(@RequestBody Dono dono, @PathVariable("id") int id) {
+        Dono obj = donoService.atualiza(id, dono);
+        return ResponseEntity.noContent().build();
     }
 }
