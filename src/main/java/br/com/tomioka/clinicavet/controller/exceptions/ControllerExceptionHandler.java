@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import javax.servlet.http.HttpServletRequest;
 
 @RestControllerAdvice
-public class BadRequestHandler {
+public class ControllerExceptionHandler {
 
-    @ExceptionHandler(ObjectNotFoundException.class)
+    @org.springframework.web.bind.annotation.ExceptionHandler(ObjectNotFoundException.class)
     public ResponseEntity<ErroPadrao> objectNotFound(ObjectNotFoundException e, HttpServletRequest request) {
         ErroPadrao erro = new ErroPadrao(HttpStatus.NOT_FOUND, e.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro);

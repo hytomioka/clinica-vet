@@ -46,6 +46,13 @@ class DonoServiceTest {
         assertTrue(donoMock != null);
     }
 
+    @Test
+    void deveriaSalvarUmNovoDonoNoRepositorio() {
+        when(repo.save(dono.get())).thenReturn(dono.get());
+        Dono donoMock = service.inserir(dono.get());
+        assertTrue(donoMock != null);
+    }
+
     public void criaDonoDeTeste() {
         this.dono = Optional.of(new Dono());
         dono.get().setId(1);
