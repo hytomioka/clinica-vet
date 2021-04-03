@@ -73,6 +73,14 @@ class DonoServiceTest {
         assertEquals("Rua engenheiro Borges, 32", donoAtualizado.getEndereco());
     }
 
+    @Test
+    void deveriaRetornarExcecaoQuandoNaoForPossivelEncontrarDono() {
+        Dono donoTesteAtualizado = criaDonoDeTesteParaAtualizarCampos();
+        when(repo.findById(any())).thenReturn(Optional.ofNullable(null));
+        assertThrows(ObjectNotFoundException.class,
+                () -> service.atualiza(dono.get().getId(), donoTesteAtualizado));
+    }
+
     public void criaDonoDeTeste() {
         this.dono = Optional.of(new Dono());
         dono.get().setId(1);

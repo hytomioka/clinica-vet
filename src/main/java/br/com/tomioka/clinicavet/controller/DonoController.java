@@ -38,4 +38,10 @@ public class DonoController {
         Dono obj = donoService.atualiza(id, dono);
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleta(@PathVariable("id") int id) {
+        donoService.deleta(id);
+        return ResponseEntity.noContent().build();
+    }
 }

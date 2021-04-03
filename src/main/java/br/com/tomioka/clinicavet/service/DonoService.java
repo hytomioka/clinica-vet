@@ -38,4 +38,10 @@ public class DonoService {
         obj = donoRepository.save(obj);
         return obj;
     }
+
+
+    public void deleta(int id) {
+        buscaPorId(id);
+        donoRepository.deleteById(id);
+    }
 }
