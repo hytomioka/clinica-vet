@@ -2,6 +2,7 @@ package br.com.tomioka.clinicavet.modelo;
 
 import br.com.tomioka.clinicavet.modelo.enums.TipoPet;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 
@@ -18,10 +19,22 @@ public class Pet extends EntidadeBase {
     @Column(name = "idade")
     private Integer idade;
 
-    @JsonBackReference
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "dono_id")
     private Dono dono;
+
+    public Pet() {
+        super();
+    }
+
+    public Pet(String nome, Integer tipoDoPet, Integer idade, Dono dono) {
+        super();
+        this.nome = nome;
+        this.tipoDoPet = tipoDoPet;
+        this.idade = idade;
+        this.dono = dono;
+    }
 
     public String getNome() {
         return nome;

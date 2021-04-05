@@ -1,13 +1,16 @@
 package br.com.tomioka.clinicavet.controller;
 
+import br.com.tomioka.clinicavet.dto.PetNewDTO;
 import br.com.tomioka.clinicavet.modelo.Pet;
 import br.com.tomioka.clinicavet.service.PetService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/pet")
@@ -24,5 +27,13 @@ public class PetController {
     public ResponseEntity<Pet> busca(@PathVariable int id) {
         Pet obj = petService.buscaPorId(id);
         return ResponseEntity.ok().body(obj);
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> insere(@RequestBody PetNewDTO dto) {
+        Pet obj = petService.insere(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 }

@@ -4,4 +4,5 @@ import br.com.tomioka.clinicavet.modelo.Dono;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DonoRepository extends JpaRepository<Dono, Integer> {
+    Dono findByEmail(String donoEmail);
 }
