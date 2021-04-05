@@ -4,15 +4,15 @@ import org.springframework.http.HttpStatus;
 
 public class ErroPadrao {
 
-    private HttpStatus status;
+    private Integer status;
     private String mensagem;
 
-    public ErroPadrao(HttpStatus status, String mensagem) {
+    public ErroPadrao(Integer status, String mensagem) {
         this.status = status;
         this.mensagem = mensagem;
     }
 
-    public HttpStatus getStatus() {
+    public Integer getStatus() {
         return status;
     }
 

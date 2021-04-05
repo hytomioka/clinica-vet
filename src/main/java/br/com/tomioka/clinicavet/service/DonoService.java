@@ -2,7 +2,9 @@ package br.com.tomioka.clinicavet.service;
 
 import br.com.tomioka.clinicavet.modelo.Dono;
 import br.com.tomioka.clinicavet.repository.DonoRepository;
+import br.com.tomioka.clinicavet.service.exceptions.DataIntegrityException;
 import br.com.tomioka.clinicavet.service.exceptions.ObjectNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -41,7 +43,11 @@ public class DonoService {
 
 
     public void deleta(int id) {
-        buscaPorId(id);
-        donoRepository.deleteById(id);
+        try {
+            buscaPorId(id);
+            donoRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Não é possível excluir um Dono que contêm Pets");
+        }
     }
 }
