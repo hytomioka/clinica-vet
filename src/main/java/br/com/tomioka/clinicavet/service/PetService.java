@@ -37,4 +37,14 @@ public class PetService {
         repo.save(obj);
         return obj;
     }
+
+    @Transactional
+    public Pet atualiza(PetNewDTO dto, int id) {
+        Pet obj = dto.converte(donoRepository);
+        Pet objDoBanco = buscaPorId(id);
+        objDoBanco.setNome(obj.getNome() != null ? obj.getNome() : objDoBanco.getNome());
+        objDoBanco.setIdade(obj.getIdade() != null ? obj.getIdade() : objDoBanco.getIdade());
+        obj = repo.save(objDoBanco);
+        return obj;
+    }
 }

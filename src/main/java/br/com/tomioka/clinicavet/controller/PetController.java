@@ -36,4 +36,10 @@ public class PetController {
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Pet> atualiza(@RequestBody PetNewDTO dto, @PathVariable("id") int id) {
+        Pet obj = petService.atualiza(dto, id);
+        return ResponseEntity.noContent().build();
+    }
 }

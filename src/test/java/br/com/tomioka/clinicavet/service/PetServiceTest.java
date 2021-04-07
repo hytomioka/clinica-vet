@@ -68,7 +68,7 @@ class PetServiceTest {
 
     @Test
     void deveriaSalvarUmPetNoRepositorio() {
-        criaPetDeTesteParaRequisicaoPOST();
+        criaPetDeTesteParaRequisicaoPOSTouPUT();
         when(donoRepository.findByEmail(dono.get().getEmail()))
                 .thenReturn(dono.get());
         service.insere(dto);
@@ -78,6 +78,20 @@ class PetServiceTest {
         assertEquals("Mingau", petCaptor.getNome());
         assertEquals("Gato", petCaptor.getTipoDoPet().getDescricao());
         assertEquals(dono.get(), petCaptor.getDono());
+    }
+
+    @Test
+    void deveriaAtualizarUmPetNoRepositorio() {
+        criaPetDeTesteParaRequisicaoPOSTouPUT();
+        when(repo.findById(any())).thenReturn(pet);
+        when(donoRepository.findByEmail(any()))
+                .thenReturn(dono.get());
+        service.atualiza(dto, pet.get().getId());
+        verify(repo).save(captor.capture());
+        Pet petAtualizado = captor.getValue();
+
+        assertEquals("Mingau", petAtualizado.getNome());
+        assertEquals(7, petAtualizado.getIdade());
     }
 
     private void criaDonoEPetDeTeste() {
@@ -95,7 +109,7 @@ class PetServiceTest {
         dono.get().setPets(Arrays.asList(pet.get()));
     }
 
-    private void criaPetDeTesteParaRequisicaoPOST() {
+    private void criaPetDeTesteParaRequisicaoPOSTouPUT() {
         this.dto = new PetNewDTO();
         dto.setNome("Mingau");
         dto.setTipoDoPet(2);
