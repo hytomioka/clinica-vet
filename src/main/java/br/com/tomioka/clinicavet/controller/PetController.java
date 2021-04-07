@@ -38,8 +38,14 @@ public class PetController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Pet> atualiza(@RequestBody PetNewDTO dto, @PathVariable("id") int id) {
+    public ResponseEntity<Void> atualiza(@RequestBody PetNewDTO dto, @PathVariable("id") int id) {
         Pet obj = petService.atualiza(dto, id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleta(@PathVariable("id") int id) {
+        petService.deleta(id);
         return ResponseEntity.noContent().build();
     }
 }

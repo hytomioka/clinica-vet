@@ -7,8 +7,8 @@ import br.com.tomioka.clinicavet.repository.PetRepository;
 import br.com.tomioka.clinicavet.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -24,6 +24,7 @@ public class PetService {
         this.donoRepository = donoRepository;
     }
 
+    @Transactional(readOnly = true)
     public Pet buscaPorId(int id) {
         Optional<Pet> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -46,5 +47,12 @@ public class PetService {
         objDoBanco.setIdade(obj.getIdade() != null ? obj.getIdade() : objDoBanco.getIdade());
         obj = repo.save(objDoBanco);
         return obj;
+    }
+
+    @Transactional
+    public void deleta(int id) {
+        /* Spring não joga exceção de DataIntegrityViolation, portanto não é necessário tratar */
+        buscaPorId(id);
+        repo.deleteById(id);
     }
 }
