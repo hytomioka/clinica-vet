@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -53,8 +54,8 @@ class PetServiceTest {
     void deveriaRetornarExcecaoSePetForInexistente() {
         when(repo.findById(2))
                 .thenReturn(Optional.ofNullable(null));
-        assertThrows(ObjectNotFoundException.class,
-                () -> service.buscaPorId(2));
+        assertThatExceptionOfType(ObjectNotFoundException.class)
+                .isThrownBy(() -> service.buscaPorId(2));
     }
 
     @Test
@@ -63,9 +64,10 @@ class PetServiceTest {
                 .thenReturn(Optional.of(pet.get()));
         Pet petMock = service.buscaPorId(1);
 
-        assertTrue(pet.get() == petMock);
-        assertEquals("Thor", petMock.getNome());
-        assertEquals(pet.get().getDono(), petMock.getDono());
+        assertThat(petMock).isNotNull();
+        assertThat(pet.get()).isEqualTo(petMock);
+        assertThat(pet.get().getNome()).isEqualTo(petMock.getNome());
+        assertThat(pet.get().getDono()).isEqualTo(petMock.getDono());
     }
 
     @Test
@@ -75,11 +77,12 @@ class PetServiceTest {
                 .thenReturn(dono.get());
         service.insere(dto);
         verify(repo).save(captor.capture());
-        Pet petCaptor = captor.getValue();
+        Pet petSalvo = captor.getValue();
 
-        assertEquals("Mingau", petCaptor.getNome());
-        assertEquals("Gato", petCaptor.getTipoDoPet().getDescricao());
-        assertEquals(dono.get(), petCaptor.getDono());
+        assertThat(petSalvo).isNotNull();
+        assertThat(dto.getNome()).isEqualTo(petSalvo.getNome());
+        assertThat(dto.getTipoDoPet()).isEqualTo(petSalvo.getTipoDoPet().getCod());
+        assertThat(dto.getDonoEmail()).isEqualTo(petSalvo.getDono().getEmail());
     }
 
     @Test
@@ -92,8 +95,9 @@ class PetServiceTest {
         verify(repo).save(captor.capture());
         Pet petAtualizado = captor.getValue();
 
-        assertEquals("Mingau", petAtualizado.getNome());
-        assertEquals(7, petAtualizado.getIdade());
+        assertThat(petAtualizado).isNotNull();
+        assertThat(dto.getNome()).isEqualTo(petAtualizado.getNome());
+        assertThat(dto.getIdade()).isEqualTo(petAtualizado.getIdade());
     }
 
     private void criaDonoEPetDeTeste() {

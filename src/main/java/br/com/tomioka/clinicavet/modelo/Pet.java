@@ -1,7 +1,6 @@
 package br.com.tomioka.clinicavet.modelo;
 
 import br.com.tomioka.clinicavet.modelo.enums.TipoPet;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
