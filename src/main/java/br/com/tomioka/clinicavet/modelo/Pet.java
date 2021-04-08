@@ -28,6 +28,11 @@ public class Pet extends EntidadeBase {
         super();
     }
 
+    public Pet(String nome, Integer tipoDoPet) {
+        this.nome = nome;
+        this.tipoDoPet = tipoDoPet;
+    }
+
     public Pet(String nome, Integer tipoDoPet, Integer idade, Dono dono) {
         super();
         this.nome = nome;

@@ -6,9 +6,13 @@ import br.com.tomioka.clinicavet.repository.DonoRepository;
 import br.com.tomioka.clinicavet.repository.PetRepository;
 import br.com.tomioka.clinicavet.service.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -54,5 +58,11 @@ public class PetService {
         /* Spring não joga exceção de DataIntegrityViolation, portanto não é necessário tratar */
         buscaPorId(id);
         repo.deleteById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Pet> buscaComFiltro(int page, int size, int tipo) {
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "nome");
+        return repo.findAllByTipoDoPet(tipo, pageRequest);
     }
 }

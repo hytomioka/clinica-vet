@@ -13,9 +13,11 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
-import javax.lang.model.util.Types;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -115,5 +117,23 @@ class PetServiceTest {
         dto.setTipoDoPet(2);
         dto.setIdade(7);
         dto.setDonoEmail(dono.get().getEmail());
+    }
+
+    private PageRequest criaPaginacao() {
+        int page = 0;
+        int size = 10;
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "nome");
+        return pageRequest;
+    }
+
+    private List<Pet> criaListaDePets() {
+        List<Pet> lista = Arrays.asList(
+                new Pet("Bobby", 1),
+                new Pet("Lolla", 2),
+                new Pet("Groovy", 1),
+                new Pet("Luz", 1),
+                new Pet("Bolota", 4)
+        );
+        return lista;
     }
 }
