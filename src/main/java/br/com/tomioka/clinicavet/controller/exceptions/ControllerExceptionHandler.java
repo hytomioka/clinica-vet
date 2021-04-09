@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ControllerExceptionHandler {
 
     @ExceptionHandler(ObjectNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<ErroPadrao> objectNotFound(ObjectNotFoundException e, HttpServletRequest request) {
         ErroPadrao erro = new ErroPadrao(HttpStatus.NOT_FOUND.value(), e.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro);

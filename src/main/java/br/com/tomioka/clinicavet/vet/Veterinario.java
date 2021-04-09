@@ -1,4 +1,6 @@
-package br.com.tomioka.clinicavet.modelo;
+package br.com.tomioka.clinicavet.vet;
+
+import br.com.tomioka.clinicavet.modelo.Pessoa;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

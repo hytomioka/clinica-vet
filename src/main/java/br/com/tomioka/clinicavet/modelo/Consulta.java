@@ -1,7 +1,6 @@
 package br.com.tomioka.clinicavet.modelo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.format.annotation.DateTimeFormat;
+import br.com.tomioka.clinicavet.vet.Veterinario;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
