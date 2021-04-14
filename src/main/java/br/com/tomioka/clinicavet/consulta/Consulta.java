@@ -1,6 +1,10 @@
-package br.com.tomioka.clinicavet.modelo;
+package br.com.tomioka.clinicavet.consulta;
 
+import br.com.tomioka.clinicavet.modelo.EntidadeBase;
+import br.com.tomioka.clinicavet.modelo.Pet;
 import br.com.tomioka.clinicavet.vet.Veterinario;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -22,6 +26,23 @@ public class Consulta extends EntidadeBase {
 
     @Column(name = "descricao")
     private String descricao;
+
+    public Consulta() {
+    }
+
+    public Consulta(LocalDateTime horario, Pet pet, Veterinario vet, String descricao) {
+        super();
+        this.horario = horario;
+        this.pet = pet;
+        this.veterinario = vet;
+        this.descricao = descricao;
+    }
+
+    public Consulta(LocalDateTime horario, String descricao) {
+        super();
+        this.horario = horario;
+        this.descricao = descricao;
+    }
 
     public String getDescricao() {
         return descricao;
@@ -45,5 +66,13 @@ public class Consulta extends EntidadeBase {
 
     public void setPet(Pet pet) {
         this.pet = pet;
+    }
+
+    public Veterinario getVeterinario() {
+        return veterinario;
+    }
+
+    public void setVeterinario(Veterinario veterinario) {
+        this.veterinario = veterinario;
     }
 }

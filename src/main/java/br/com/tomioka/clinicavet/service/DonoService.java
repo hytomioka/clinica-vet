@@ -23,7 +23,7 @@ public class DonoService {
     public Dono buscaPorId(int id) {
         Optional<Dono> obj = donoRepository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
-                "Objeto não encontrado. Id = " + id
+                "Dono não encontrado. Id = " + id
         ));
     }
 

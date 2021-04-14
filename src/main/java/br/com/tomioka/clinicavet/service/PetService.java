@@ -31,7 +31,7 @@ public class PetService {
     public Pet buscaPorId(int id) {
         Optional<Pet> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
-                "Objeto não encontrado. Id= " + id
+                "Pet não encontrado. Id= " + id
         ));
     }
 

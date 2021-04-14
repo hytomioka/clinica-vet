@@ -10,7 +10,7 @@ import java.util.Optional;
 @Service
 public class VeterinarioService {
 
-    VeterinarioRepository repo;
+    private VeterinarioRepository repo;
 
     @Autowired
     public VeterinarioService(VeterinarioRepository repo) {
@@ -21,7 +21,7 @@ public class VeterinarioService {
     public Veterinario buscaPorId(int id) {
         Optional<Veterinario> obj = repo.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
-                "Objeto não encontrado. Id= " + id
+                "Veterinario não encontrado. Id= " + id
         ));
     }
 
