@@ -1,14 +1,12 @@
-package br.com.tomioka.clinicavet.controller;
+package br.com.tomioka.clinicavet.pet;
 
-import br.com.tomioka.clinicavet.dto.PetNewDTO;
-import br.com.tomioka.clinicavet.modelo.Pet;
-import br.com.tomioka.clinicavet.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
@@ -40,7 +38,7 @@ public class PetController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insere(@RequestBody PetNewDTO dto) {
+    public ResponseEntity<Void> insere(@Valid @RequestBody PetNewDTO dto) {
         Pet obj = petService.insere(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();

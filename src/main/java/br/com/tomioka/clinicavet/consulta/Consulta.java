@@ -1,10 +1,8 @@
 package br.com.tomioka.clinicavet.consulta;
 
 import br.com.tomioka.clinicavet.modelo.EntidadeBase;
-import br.com.tomioka.clinicavet.modelo.Pet;
+import br.com.tomioka.clinicavet.pet.Pet;
 import br.com.tomioka.clinicavet.vet.Veterinario;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

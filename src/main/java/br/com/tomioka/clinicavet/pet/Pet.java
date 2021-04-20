@@ -1,5 +1,7 @@
-package br.com.tomioka.clinicavet.modelo;
+package br.com.tomioka.clinicavet.pet;
 
+import br.com.tomioka.clinicavet.dono.Dono;
+import br.com.tomioka.clinicavet.modelo.EntidadeBase;
 import br.com.tomioka.clinicavet.modelo.enums.TipoPet;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -18,7 +20,6 @@ public class Pet extends EntidadeBase {
     @Column(name = "idade")
     private Integer idade;
 
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "dono_id")
     private Dono dono;

@@ -1,9 +1,7 @@
-package br.com.tomioka.clinicavet.service;
+package br.com.tomioka.clinicavet.dono;
 
-import br.com.tomioka.clinicavet.modelo.Dono;
-import br.com.tomioka.clinicavet.repository.DonoRepository;
-import br.com.tomioka.clinicavet.service.exceptions.DataIntegrityException;
-import br.com.tomioka.clinicavet.service.exceptions.ObjectNotFoundException;
+import br.com.tomioka.clinicavet.exceptions.DataIntegrityException;
+import br.com.tomioka.clinicavet.exceptions.ObjectNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

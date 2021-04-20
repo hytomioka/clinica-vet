@@ -1,8 +1,8 @@
-package br.com.tomioka.clinicavet.dto;
+package br.com.tomioka.clinicavet.pet;
 
-import br.com.tomioka.clinicavet.modelo.Dono;
-import br.com.tomioka.clinicavet.modelo.Pet;
-import br.com.tomioka.clinicavet.repository.DonoRepository;
+import br.com.tomioka.clinicavet.dono.Dono;
+import br.com.tomioka.clinicavet.pet.Pet;
+import br.com.tomioka.clinicavet.dono.DonoRepository;
 
 import java.io.Serializable;
 

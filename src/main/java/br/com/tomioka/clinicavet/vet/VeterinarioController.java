@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
@@ -21,7 +22,7 @@ public class VeterinarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insere(@RequestBody Veterinario vet) {
+    public ResponseEntity<Void> insere(@Valid @RequestBody Veterinario vet) {
         Veterinario obj = service.insere(vet);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(vet.getId()).toUri();

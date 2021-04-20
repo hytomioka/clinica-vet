@@ -1,4 +1,4 @@
-package br.com.tomioka.clinicavet.service.exceptions;
+package br.com.tomioka.clinicavet.exceptions;
 
 public class DataIntegrityException extends RuntimeException {
     public DataIntegrityException(String msg) {

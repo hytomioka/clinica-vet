@@ -1,6 +1,6 @@
-package br.com.tomioka.clinicavet.repository;
+package br.com.tomioka.clinicavet.pet;
 
-import br.com.tomioka.clinicavet.modelo.Pet;
+import br.com.tomioka.clinicavet.pet.Pet;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

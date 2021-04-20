@@ -1,15 +1,12 @@
 package br.com.tomioka.clinicavet.consulta;
 
-import br.com.tomioka.clinicavet.modelo.Pet;
-import br.com.tomioka.clinicavet.repository.PetRepository;
-import br.com.tomioka.clinicavet.service.PetService;
-import br.com.tomioka.clinicavet.service.exceptions.ObjectNotFoundException;
+import br.com.tomioka.clinicavet.pet.PetService;
+import br.com.tomioka.clinicavet.exceptions.ObjectNotFoundException;
 import br.com.tomioka.clinicavet.vet.VeterinarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.SimpleDateFormat;
 import java.util.Optional;
 
 @Service

@@ -1,11 +1,12 @@
 package br.com.tomioka.clinicavet.service;
 
-import br.com.tomioka.clinicavet.modelo.Dono;
-import br.com.tomioka.clinicavet.modelo.Pet;
+import br.com.tomioka.clinicavet.dono.Dono;
+import br.com.tomioka.clinicavet.dono.DonoService;
+import br.com.tomioka.clinicavet.pet.Pet;
 import br.com.tomioka.clinicavet.modelo.enums.TipoPet;
-import br.com.tomioka.clinicavet.repository.DonoRepository;
-import br.com.tomioka.clinicavet.service.exceptions.DataIntegrityException;
-import br.com.tomioka.clinicavet.service.exceptions.ObjectNotFoundException;
+import br.com.tomioka.clinicavet.dono.DonoRepository;
+import br.com.tomioka.clinicavet.exceptions.DataIntegrityException;
+import br.com.tomioka.clinicavet.exceptions.ObjectNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -14,8 +15,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.dao.DataIntegrityViolationException;
 
-import javax.lang.model.util.Types;
-import javax.management.ConstructorParameters;
 import java.util.Arrays;
 import java.util.Optional;
 

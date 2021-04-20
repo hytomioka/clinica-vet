@@ -1,4 +1,4 @@
-package br.com.tomioka.clinicavet.controller.exceptions;
+package br.com.tomioka.clinicavet.exceptions;
 
 import org.springframework.http.HttpStatus;
 

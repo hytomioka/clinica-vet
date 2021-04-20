@@ -1,13 +1,11 @@
-package br.com.tomioka.clinicavet.controller;
+package br.com.tomioka.clinicavet.dono;
 
-import br.com.tomioka.clinicavet.modelo.Dono;
-import br.com.tomioka.clinicavet.service.DonoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
-import java.nio.channels.ScatteringByteChannel;
 
 @RestController
 @RequestMapping("/dono")
@@ -27,7 +25,7 @@ public class DonoController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insere(@RequestBody Dono dono) {
+    public ResponseEntity<Void> insere(@Valid @RequestBody Dono dono) {
         Dono obj = donoService.inserir(dono);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();
