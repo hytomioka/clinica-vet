@@ -41,7 +41,7 @@ public class ConsultaService {
     }
 
     @Transactional
-    public Consulta atualiza(int id, ConsultaNewDTO dto) {
+    public Consulta atualiza(int id, ConsultaDTO dto) {
         Consulta obj = dto.converte();
         Consulta objDoBanco = buscaPorId(id);
         objDoBanco.setHorario(obj.getHorario() != null ? obj.getHorario() : objDoBanco.getHorario());

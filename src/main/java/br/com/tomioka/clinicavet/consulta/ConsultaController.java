@@ -31,7 +31,7 @@ public class ConsultaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> atualiza(@RequestBody ConsultaNewDTO dto, @PathVariable("id") int id) {
+    public ResponseEntity<Void> atualiza(@Valid @RequestBody ConsultaDTO dto, @PathVariable("id") int id) {
         Consulta obj = service.atualiza(id, dto);
         return ResponseEntity.noContent().build();
     }

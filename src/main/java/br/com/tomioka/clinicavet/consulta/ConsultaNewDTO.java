@@ -39,10 +39,6 @@ public class ConsultaNewDTO {
         this.descricao = consulta.getDescricao();
     }
 
-    public Consulta converte() {
-        return new Consulta(horario, descricao);
-    }
-
     public Consulta converte(PetService petService, VeterinarioRepository vetRepository) {
         Pet pet = petService.buscaPorId(petId);
         Veterinario vet = vetRepository.findByEmail(vetEmail);

@@ -4,6 +4,9 @@ import br.com.tomioka.clinicavet.dono.Dono;
 import br.com.tomioka.clinicavet.pet.Pet;
 import br.com.tomioka.clinicavet.dono.DonoRepository;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /*
@@ -13,9 +16,17 @@ import java.io.Serializable;
 
 public class PetNewDTO implements Serializable {
 
+    @NotEmpty(message = "Preenchimento obrigatório")
     private String nome;
+
+    @NotNull(message = "Preenchimento obrigatório")
     private Integer tipoDoPet;
+
+    @NotNull(message = "Preenchimento obrigatório")
     private Integer idade;
+
+    @NotEmpty(message = "Preenchimento obrigatório")
+    @Email
     private String donoEmail;
 
     public PetNewDTO() {

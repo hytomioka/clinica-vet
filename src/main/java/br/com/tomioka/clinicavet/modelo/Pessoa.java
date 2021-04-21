@@ -6,22 +6,34 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Locale;
 
 @MappedSuperclass
 public class Pessoa extends EntidadeBase {
 
     @Column(name = "nome")
-    @NotEmpty(message = "Preenchimento obrigatório")
     private String nome;
 
     @Column(name = "idade")
-    @NotNull
     private Integer idade;
 
     @Column(name = "email")
-    @NotEmpty(message = "Preenchimento obrigatório")
-    @Email
     private String email;
+
+    public Pessoa() {
+    }
+
+    public Pessoa(String email) {
+        super();
+        this.email = email;
+    }
+
+    public Pessoa(String nome, Integer idade, String email) {
+        super();
+        this.nome = nome;
+        this.idade = idade;
+        this.email = email;
+    }
 
     public String getNome() {
         return nome;

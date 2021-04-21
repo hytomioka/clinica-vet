@@ -17,19 +17,26 @@ import java.util.List;
 public class Dono extends Pessoa {
 
     @Column(name = "endereco")
-    @NotEmpty(message = "Preenchimento obrigatório")
-    private String Endereco;
+    private String endereco;
 
     @JsonIgnore
     @OneToMany(mappedBy = "dono")
     private List<Pet> pets;
 
+    public Dono() {
+    }
+
+    public Dono(String email, String endereco) {
+        super(email);
+        this.endereco = endereco;
+    }
+
     public String getEndereco() {
-        return Endereco;
+        return endereco;
     }
 
     public void setEndereco(String endereco) {
-        Endereco = endereco;
+        this.endereco = endereco;
     }
 
     public List<Pet> getPets() {

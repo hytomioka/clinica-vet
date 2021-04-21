@@ -45,8 +45,9 @@ public class PetController {
         return ResponseEntity.created(uri).build();
     }
 
+    // não utilizar !!
     @PutMapping("/{id}")
-    public ResponseEntity<Void> atualiza(@RequestBody PetNewDTO dto, @PathVariable("id") int id) {
+    public ResponseEntity<Void> atualiza(@Valid @RequestBody PetNewDTO dto, @PathVariable("id") int id) {
         Pet obj = petService.atualiza(dto, id);
         return ResponseEntity.noContent().build();
     }

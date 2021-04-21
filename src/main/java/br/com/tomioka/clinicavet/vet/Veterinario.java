@@ -13,6 +13,14 @@ public class Veterinario extends Pessoa {
     @Column(name = "especialidade")
     private String especialidade;
 
+    public Veterinario() {
+    }
+
+    public Veterinario(String nome, Integer idade, String email, String especialidade) {
+        super(nome, idade, email);
+        this.especialidade = especialidade;
+    }
+
     public String getEspecialidade() {
         return especialidade;
     }

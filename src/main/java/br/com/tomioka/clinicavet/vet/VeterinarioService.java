@@ -26,8 +26,9 @@ public class VeterinarioService {
     }
 
     @Transactional
-    public Veterinario insere(Veterinario vet) {
-        Veterinario obj = repo.save(vet);
+    public Veterinario insere(VeterinarioNewDTO dto) {
+        Veterinario obj = dto.converte();
+        obj = repo.save(obj);
         return obj;
     }
 

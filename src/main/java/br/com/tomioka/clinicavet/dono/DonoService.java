@@ -32,10 +32,11 @@ public class DonoService {
     }
 
     @Transactional
-    public Dono atualiza(int id, Dono dono) {
-        Dono obj = buscaPorId(id);
-        obj.setNome(dono.getNome());
-        obj.setEndereco(dono.getEndereco());
+    public Dono atualiza(int id, DonoDTO dto) {
+        Dono obj = dto.converte();
+        Dono objDoBanco = buscaPorId(id);
+        objDoBanco.setEmail(obj.getEmail() != null ? obj.getEmail() : objDoBanco.getEmail());
+        objDoBanco.setEndereco(obj.getEndereco() != null ? obj.getEndereco() : objDoBanco.getEndereco());
         obj = donoRepository.save(obj);
         return obj;
     }

@@ -1,6 +1,7 @@
 package br.com.tomioka.clinicavet.service;
 
 import br.com.tomioka.clinicavet.dono.Dono;
+import br.com.tomioka.clinicavet.dono.DonoDTO;
 import br.com.tomioka.clinicavet.dono.DonoService;
 import br.com.tomioka.clinicavet.pet.Pet;
 import br.com.tomioka.clinicavet.modelo.enums.TipoPet;
@@ -66,19 +67,18 @@ class DonoServiceTest {
 
     @Test
     void deveriaAtualizarUmDonoSalvoNoRepositorio() {
-        Dono donoTesteAtualizado = criaDonoDeTesteParaAtualizarCampos();
+        DonoDTO donoTesteAtualizado = criaDonoDeTesteParaAtualizarCampos();
         when(repo.findById(any())).thenReturn(dono);
         service.atualiza(dono.get().getId(), donoTesteAtualizado);
         verify(repo).save(captor.capture());
         Dono donoAtualizado = captor.getValue();
 
-        assertEquals("Ana Clara", donoAtualizado.getNome());
         assertEquals("Rua engenheiro Borges, 32", donoAtualizado.getEndereco());
     }
 
     @Test
     void deveriaRetornarExcecaoQuandoNaoForPossivelEncontrarDono() {
-        Dono donoTesteAtualizado = criaDonoDeTesteParaAtualizarCampos();
+        DonoDTO donoTesteAtualizado = criaDonoDeTesteParaAtualizarCampos();
         when(repo.findById(any())).thenReturn(Optional.ofNullable(null));
         assertThrows(ObjectNotFoundException.class,
                 () -> service.atualiza(dono.get().getId(), donoTesteAtualizado));
@@ -104,11 +104,11 @@ class DonoServiceTest {
         dono.get().setPets(Arrays.asList(pet));
     }
 
-    public Dono criaDonoDeTesteParaAtualizarCampos() {
+    public DonoDTO criaDonoDeTesteParaAtualizarCampos() {
         Dono donoAtualizaCampos = new Dono();
         donoAtualizaCampos.setId(1);
         donoAtualizaCampos.setNome("Ana Clara");
         donoAtualizaCampos.setEndereco("Rua engenheiro Borges, 32");
-        return donoAtualizaCampos;
+        return new DonoDTO(donoAtualizaCampos);
     }
 }

@@ -33,8 +33,8 @@ public class DonoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> atualiza(@RequestBody Dono dono, @PathVariable("id") int id) {
-        Dono obj = donoService.atualiza(id, dono);
+    public ResponseEntity<Void> atualiza(@Valid @RequestBody DonoDTO dto, @PathVariable("id") int id) {
+        Dono obj = donoService.atualiza(id, dto);
         return ResponseEntity.noContent().build();
     }
 

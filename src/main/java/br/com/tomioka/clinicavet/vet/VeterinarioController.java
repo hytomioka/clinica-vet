@@ -22,15 +22,15 @@ public class VeterinarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insere(@Valid @RequestBody Veterinario vet) {
-        Veterinario obj = service.insere(vet);
+    public ResponseEntity<Void> insere(@Valid @RequestBody VeterinarioNewDTO dto) {
+        Veterinario obj = service.insere(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(vet.getId()).toUri();
+                .path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> atualiza(@RequestBody Veterinario vet, @PathVariable("id") int id) {
+    public ResponseEntity<Void> atualiza(@Valid @RequestBody Veterinario vet, @PathVariable("id") int id) {
         Veterinario obj = service.atualiza(vet, id);
         return ResponseEntity.noContent().build();
     }
