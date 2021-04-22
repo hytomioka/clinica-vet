@@ -3,7 +3,6 @@ package br.com.tomioka.clinicavet.pet;
 import br.com.tomioka.clinicavet.dono.Dono;
 import br.com.tomioka.clinicavet.modelo.EntidadeBase;
 import br.com.tomioka.clinicavet.modelo.enums.TipoPet;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 

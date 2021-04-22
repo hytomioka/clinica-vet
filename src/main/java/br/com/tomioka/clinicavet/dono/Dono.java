@@ -31,6 +31,11 @@ public class Dono extends Pessoa {
         this.endereco = endereco;
     }
 
+    public Dono(String nome, Integer idade, String email, String endereco) {
+        super(nome, idade, email);
+        this.endereco = endereco;
+    }
+
     public String getEndereco() {
         return endereco;
     }

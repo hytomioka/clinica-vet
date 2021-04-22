@@ -12,6 +12,9 @@ public class ErroPadrao {
         this.mensagem = mensagem;
     }
 
+    public ErroPadrao(String mensagem) {
+    }
+
     public Integer getStatus() {
         return status;
     }
@@ -19,4 +22,5 @@ public class ErroPadrao {
     public String getMensagem() {
         return mensagem;
     }
+
 }

@@ -58,12 +58,12 @@ class DonoServiceTest {
         assertTrue(donoMock != null);
     }
 
-    @Test
-    void deveriaSalvarUmNovoDonoNoRepositorio() {
-        when(repo.save(dono.get())).thenReturn(dono.get());
-        Dono donoMock = service.inserir(dono.get());
-        assertTrue(donoMock != null);
-    }
+//    @Test
+//    void deveriaSalvarUmNovoDonoNoRepositorio() {
+//        when(repo.save(dono.get())).thenReturn(dono.get());
+//        Dono donoMock = service.inserir(dono.get());
+//        assertTrue(donoMock != null);
+//    }
 
     @Test
     void deveriaAtualizarUmDonoSalvoNoRepositorio() {

@@ -1,9 +1,8 @@
 package br.com.tomioka.clinicavet.consulta;
 
-import br.com.tomioka.clinicavet.pet.PetService;
 import br.com.tomioka.clinicavet.exceptions.ObjectNotFoundException;
+import br.com.tomioka.clinicavet.pet.PetService;
 import br.com.tomioka.clinicavet.vet.VeterinarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +17,6 @@ public class ConsultaService {
 
     private PetService petService;
 
-    @Autowired
     public ConsultaService(ConsultaRepository repo, VeterinarioRepository vetRepository, PetService petService) {
         this.repo = repo;
         this.veterinarioRepository = vetRepository;

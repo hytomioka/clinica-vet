@@ -25,8 +25,8 @@ public class DonoController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insere(@Valid @RequestBody Dono dono) {
-        Dono obj = donoService.inserir(dono);
+    public ResponseEntity<Void> insere(@Valid @RequestBody DonoNewDTO dto) {
+        Dono obj = donoService.inserir(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();

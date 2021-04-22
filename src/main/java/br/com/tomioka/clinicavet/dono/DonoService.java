@@ -26,8 +26,9 @@ public class DonoService {
     }
 
     @Transactional
-    public Dono inserir(Dono dono) {
-        Dono obj = donoRepository.save(dono);
+    public Dono inserir(DonoNewDTO dto) {
+        Dono obj = dto.converte();
+        obj = donoRepository.save(obj);
         return obj;
     }
 

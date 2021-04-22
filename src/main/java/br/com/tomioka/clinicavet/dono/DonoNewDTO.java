@@ -1,10 +1,10 @@
-package br.com.tomioka.clinicavet.vet;
+package br.com.tomioka.clinicavet.dono;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-public class VeterinarioNewDTO {
+public class DonoNewDTO {
 
     @NotEmpty(message = "Preenchimento obrigatório")
     private String nome;
@@ -17,20 +17,20 @@ public class VeterinarioNewDTO {
     private String email;
 
     @NotEmpty(message = "Preenchimento obrigatório")
-    private String especialidade;
+    private String endereco;
 
-    public VeterinarioNewDTO() {
+    public DonoNewDTO() {
     }
 
-    public VeterinarioNewDTO(Veterinario vet) {
-        this.nome = vet.getNome();
-        this.idade = vet.getIdade();
-        this.email = vet.getEmail();
-        this.especialidade = vet.getEspecialidade();
+    public DonoNewDTO(Dono dono) {
+        this.nome = dono.getNome();
+        this.idade = dono.getIdade();
+        this.email = dono.getEmail();
+        this.endereco = dono.getEndereco();
     }
 
-    public Veterinario converte() {
-        return new Veterinario(nome, idade, email, especialidade);
+    public Dono converte() {
+        return new Dono(nome, idade, email, endereco);
     }
 
     public String getNome() {
@@ -57,11 +57,11 @@ public class VeterinarioNewDTO {
         this.email = email;
     }
 
-    public String getEspecialidade() {
-        return especialidade;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 }

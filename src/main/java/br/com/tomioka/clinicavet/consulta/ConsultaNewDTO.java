@@ -16,16 +16,17 @@ import java.time.LocalDateTime;
 public class ConsultaNewDTO {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
-    @Future
+    @Future(message = "Data inválida, necessário uma data futura")
     private LocalDateTime horario;
 
-    @NotNull
+    @NotNull(message = "Preenchimento obrigatório")
     private Integer petId;
 
-    @NotEmpty @Email
+    @NotEmpty(message = "Preenchimento obrigatório")
+    @Email(message = "E-mail inválido")
     private String vetEmail;
 
-    @NotEmpty
+    @NotNull(message = "Preenchimento obrigatório")
     @Length(min = 5, max = 120, message = "Deve conter entre 5 e 120 caracteres")
     private String descricao;
 
