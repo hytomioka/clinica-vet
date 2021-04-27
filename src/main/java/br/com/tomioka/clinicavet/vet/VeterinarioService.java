@@ -2,6 +2,8 @@ package br.com.tomioka.clinicavet.vet;
 
 import br.com.tomioka.clinicavet.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,5 +49,10 @@ public class VeterinarioService {
     public void deleta(int id) {
         buscaPorId(id);
         repo.deleteById(id);
+    }
+
+    public Page<VeterinarioDTO> busca(Pageable paginacao) {
+        Page<Veterinario> obj = repo.findAll(paginacao);
+        return obj.map(VeterinarioDTO::new);
     }
 }

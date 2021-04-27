@@ -1,6 +1,9 @@
 package br.com.tomioka.clinicavet.consulta;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +22,12 @@ public class ConsultaController {
     @GetMapping("/{id}")
     public ResponseEntity<Consulta> buscaPorId(@PathVariable("id") int id) {
         Consulta obj = service.buscaPorId(id);
+        return ResponseEntity.ok().body(obj);
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<ConsultaDTO>> busca(@PageableDefault Pageable paginacao) {
+        Page<ConsultaDTO> obj = service.busca(paginacao);
         return ResponseEntity.ok().body(obj);
     }
 

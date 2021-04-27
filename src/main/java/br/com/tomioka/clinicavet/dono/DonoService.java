@@ -3,6 +3,8 @@ package br.com.tomioka.clinicavet.dono;
 import br.com.tomioka.clinicavet.exceptions.DataIntegrityException;
 import br.com.tomioka.clinicavet.exceptions.ObjectNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,5 +58,17 @@ public class DonoService {
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("Não é possível excluir um Dono que contêm Pets");
         }
+    }
+
+    @Transactional(readOnly = true)
+    public Page<DonoDTO> busca(Pageable paginacao) {
+        Page<Dono> obj = donoRepository.findAll(paginacao);
+        return obj.map(DonoDTO::new);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<DonoDTO> buscaPorNome(String nome, Pageable paginacao) {
+        Page<Dono> obj = donoRepository.findByNomeIgnoreCase(nome, paginacao);
+        return obj.map(DonoDTO::new);
     }
 }

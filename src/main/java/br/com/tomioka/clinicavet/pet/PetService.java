@@ -5,6 +5,7 @@ import br.com.tomioka.clinicavet.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,8 +58,8 @@ public class PetService {
     }
 
     @Transactional(readOnly = true)
-    public Page<Pet> buscaComFiltro(int page, int size, int tipo) {
-        PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "nome");
-        return repo.findAllByTipoDoPet(tipo, pageRequest);
+    public Page<PetDTO> busca(Pageable paginacao) {
+        Page<Pet> obj = repo.findAll(paginacao);
+        return obj.map(PetDTO::new);
     }
 }

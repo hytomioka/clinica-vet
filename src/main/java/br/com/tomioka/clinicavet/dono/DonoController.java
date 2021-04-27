@@ -1,5 +1,8 @@
 package br.com.tomioka.clinicavet.dono;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -19,9 +22,21 @@ public class DonoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Dono> busca(@PathVariable("id") int id) {
+    public ResponseEntity<Dono> buscaPorId(@PathVariable("id") int id) {
         Dono dono = donoService.buscaPorId(id);
         return ResponseEntity.ok().body(dono);
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<DonoDTO>> busca(@PageableDefault Pageable paginacao,
+                               @RequestParam(required = false) String nome) {
+        Page<DonoDTO> obj;
+        if (nome == null) {
+            obj = donoService.busca(paginacao);
+        } else {
+            obj = donoService.buscaPorNome(nome, paginacao);
+        }
+        return ResponseEntity.ok().body(obj);
     }
 
     @PostMapping

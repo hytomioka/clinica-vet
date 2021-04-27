@@ -2,6 +2,7 @@ package br.com.tomioka.clinicavet.pet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -27,14 +28,9 @@ public class PetController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<PetNewDTO>> buscaTodos(
-            @RequestParam(value = "page", defaultValue = "0", required = false) int page,
-            @RequestParam(value = "size", defaultValue = "10", required = false) int size,
-            @RequestParam(value = "tipo", defaultValue = "") int tipo
-    ) {
-        Page<Pet> obj = petService.buscaComFiltro(page, size, tipo);
-        Page<PetNewDTO> objDto = obj.map(e -> new PetNewDTO(e));
-        return ResponseEntity.ok().body(objDto);
+    public ResponseEntity<Page<PetDTO>> buscaTodos(Pageable paginacao) {
+        Page<PetDTO> dto = petService.busca(paginacao);
+        return ResponseEntity.ok().body(dto);
     }
 
     @PostMapping

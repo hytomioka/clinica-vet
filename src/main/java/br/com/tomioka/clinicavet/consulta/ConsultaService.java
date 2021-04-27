@@ -3,6 +3,8 @@ package br.com.tomioka.clinicavet.consulta;
 import br.com.tomioka.clinicavet.exceptions.ObjectNotFoundException;
 import br.com.tomioka.clinicavet.pet.PetService;
 import br.com.tomioka.clinicavet.vet.VeterinarioRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,5 +54,10 @@ public class ConsultaService {
     public void deleta(int id) {
         buscaPorId(id);
         repo.deleteById(id);
+    }
+
+    public Page<ConsultaDTO> busca(Pageable paginacao) {
+        Page<Consulta> obj = repo.findAll(paginacao);
+        return obj.map(ConsultaDTO::new);
     }
 }
