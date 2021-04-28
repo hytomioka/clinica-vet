@@ -15,8 +15,9 @@ import java.time.LocalDateTime;
 
 public class ConsultaNewDTO {
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
     @Future(message = "Data inválida, necessário uma data futura")
+    @NotNull(message = "Preenchimento obrigatório")
     private LocalDateTime horario;
 
     @NotNull(message = "Preenchimento obrigatório")

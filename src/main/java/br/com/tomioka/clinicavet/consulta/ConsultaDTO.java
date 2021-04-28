@@ -16,11 +16,10 @@ public class ConsultaDTO implements Serializable {
     * horario e a descricao da consulta
     */
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
     @Future
     private LocalDateTime horario;
 
-    @NotEmpty
     @Length(min = 5, max = 120, message = "Deve conter entre 5 e 120 caracteres")
     private String descricao;
 
