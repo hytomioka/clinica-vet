@@ -33,7 +33,7 @@ class AutenticacaoServiceTest {
     @Test
     void deveriaBuscarUsuarioNoBancoDeDados() {
         String email = "usuario@email.com";
-        when(usuarioRepository.findByEmail(email))
+        when(usuarioRepository.findByLogin(email))
                 .thenReturn(Optional.of(this.usuario));
         Usuario usuarioMock = (Usuario) authService.loadUserByUsername(email);
 
@@ -42,7 +42,7 @@ class AutenticacaoServiceTest {
 
     @Test
     void deveriaRetornarExceptionParaUsuarioNaoEncontrado() {
-        when(usuarioRepository.findByEmail("any"))
+        when(usuarioRepository.findByLogin("any"))
                 .thenReturn(null);
 
         assertThatExceptionOfType(UsernameNotFoundException.class).isThrownBy(

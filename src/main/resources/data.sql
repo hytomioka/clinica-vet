@@ -21,3 +21,6 @@ VALUES('Paulo Silva', 'psilva@email.com', '24', 'radiologia');
 
 INSERT INTO CONSULTA(pet_id, vet_id, data_horario, descricao)
 VALUES('1', '1', '2021-03-10 13:00', 'raio x do torax');
+
+INSERT INTO USUARIO(login, senha)
+VALUES('usuario@email.com', '$2a$10$kbNJ7kvE1.M4l3UFQCDZ7.KJQhNquBGZcDjt4uNdAkRo79ZOlHdLS');
