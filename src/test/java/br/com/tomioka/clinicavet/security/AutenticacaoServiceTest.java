@@ -25,7 +25,8 @@ class AutenticacaoServiceTest {
 
     @BeforeEach
     public void setUp() {
-        MockitoAnnotations.openMocks(this);
+//        MockitoAnnotations.openMocks(this);
+        MockitoAnnotations.initMocks(this);
         this.authService = new AutenticacaoService(usuarioRepository);
         criaUsuarioDeTeste();
     }
