@@ -1,13 +1,12 @@
 package br.com.tomioka.clinicavet.service;
 
-import br.com.tomioka.clinicavet.pet.PetNewDTO;
-import br.com.tomioka.clinicavet.dono.Dono;
-import br.com.tomioka.clinicavet.pet.Pet;
-import br.com.tomioka.clinicavet.modelo.enums.TipoPet;
-import br.com.tomioka.clinicavet.dono.DonoRepository;
-import br.com.tomioka.clinicavet.pet.PetRepository;
-import br.com.tomioka.clinicavet.pet.PetService;
-import br.com.tomioka.clinicavet.exceptions.ObjectNotFoundException;
+import br.com.tomioka.clinicavet.controller.dto.PetNewDTO;
+import br.com.tomioka.clinicavet.model.Dono;
+import br.com.tomioka.clinicavet.model.Pet;
+import br.com.tomioka.clinicavet.model.enums.TipoPet;
+import br.com.tomioka.clinicavet.repository.DonoRepository;
+import br.com.tomioka.clinicavet.repository.PetRepository;
+import br.com.tomioka.clinicavet.configuration.exceptions.ObjectNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
