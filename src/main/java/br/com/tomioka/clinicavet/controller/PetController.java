@@ -27,8 +27,8 @@ public class PetController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Pet> busca(@PathVariable int id) {
-        Pet obj = petService.buscaPorId(id);
-        return ResponseEntity.ok().body(obj);
+        Pet pet = petService.buscaPorId(id);
+        return ResponseEntity.ok().body(pet);
     }
 
     @GetMapping
@@ -39,16 +39,16 @@ public class PetController {
 
     @PostMapping
     public ResponseEntity<Void> insere(@Valid @RequestBody PetNewDTO dto) {
-        Pet obj = petService.insere(dto);
+        Pet pet = petService.insere(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(obj.getId()).toUri();
+                .path("/{id}").buildAndExpand(pet.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
     // não utilizar !!
     @PutMapping("/{id}")
     public ResponseEntity<Void> atualiza(@Valid @RequestBody PetNewDTO dto, @PathVariable("id") int id) {
-        Pet obj = petService.atualiza(dto, id);
+        Pet pet = petService.atualiza(dto, id);
         return ResponseEntity.noContent().build();
     }
 

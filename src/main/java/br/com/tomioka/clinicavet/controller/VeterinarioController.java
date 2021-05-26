@@ -24,8 +24,8 @@ public class VeterinarioController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Veterinario> buscaPorId(@PathVariable("id") int id) {
-        Veterinario obj = service.buscaPorId(id);
-        return ResponseEntity.ok().body(obj);
+        Veterinario veterinario = service.buscaPorId(id);
+        return ResponseEntity.ok().body(veterinario);
     }
 
     @GetMapping
@@ -36,15 +36,15 @@ public class VeterinarioController {
 
     @PostMapping
     public ResponseEntity<Void> insere(@Valid @RequestBody VeterinarioNewDTO dto) {
-        Veterinario obj = service.insere(dto);
+        Veterinario veterinario = service.insere(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(obj.getId()).toUri();
+                .path("/{id}").buildAndExpand(veterinario.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Void> atualiza(@Valid @RequestBody Veterinario vet, @PathVariable("id") int id) {
-        Veterinario obj = service.atualiza(vet, id);
+        Veterinario veterinario = service.atualiza(vet, id);
         return ResponseEntity.noContent().build();
     }
 

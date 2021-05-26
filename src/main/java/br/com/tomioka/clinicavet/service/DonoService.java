@@ -25,27 +25,27 @@ public class DonoService {
 
     @Transactional(readOnly = true)
     public Dono buscaPorId(int id) {
-        Optional<Dono> obj = donoRepository.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundException(
+        Optional<Dono> dono = donoRepository.findById(id);
+        return dono.orElseThrow(() -> new ObjectNotFoundException(
                 "Dono não encontrado. Id = " + id
         ));
     }
 
     @Transactional
     public Dono inserir(DonoNewDTO dto) {
-        Dono obj = dto.converte();
-        obj = donoRepository.save(obj);
-        return obj;
+        Dono dono = dto.converte();
+        dono = donoRepository.save(dono);
+        return dono;
     }
 
     @Transactional
     public Dono atualiza(int id, DonoDTO dto) {
-        Dono obj = dto.converte();
-        Dono objDoBanco = buscaPorId(id);
-        objDoBanco.setEmail(obj.getEmail() != null ? obj.getEmail() : objDoBanco.getEmail());
-        objDoBanco.setEndereco(obj.getEndereco() != null ? obj.getEndereco() : objDoBanco.getEndereco());
-        obj = donoRepository.save(obj);
-        return obj;
+        Dono dono = dto.converte();
+        Dono donoDoBanco = buscaPorId(id);
+        donoDoBanco.setEmail(dono.getEmail() != null ? dono.getEmail() : donoDoBanco.getEmail());
+        donoDoBanco.setEndereco(dono.getEndereco() != null ? dono.getEndereco() : donoDoBanco.getEndereco());
+        dono = donoRepository.save(dono);
+        return dono;
     }
 
     @Transactional
@@ -66,13 +66,13 @@ public class DonoService {
 
     @Transactional(readOnly = true)
     public Page<DonoDTO> busca(Pageable paginacao) {
-        Page<Dono> obj = donoRepository.findAll(paginacao);
-        return obj.map(DonoDTO::new);
+        Page<Dono> dono = donoRepository.findAll(paginacao);
+        return dono.map(DonoDTO::new);
     }
 
     @Transactional(readOnly = true)
     public Page<DonoDTO> buscaPorNome(String nome, Pageable paginacao) {
-        Page<Dono> obj = donoRepository.findByNomeIgnoreCase(nome, paginacao);
-        return obj.map(DonoDTO::new);
+        Page<Dono> dono = donoRepository.findByNomeIgnoreCase(nome, paginacao);
+        return dono.map(DonoDTO::new);
     }
 }

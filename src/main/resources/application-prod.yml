@@ -1,19 +1,15 @@
 spring:
   datasource:
     driverClassName: org.postgresql.Driver
-    url: ${DATABASE_URL}
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
+    url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
     properties.hibernate:
       format_sql: true
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
 
 server:
   error:
@@ -24,5 +20,5 @@ server:
 
 clinica:
   jwt:
-    secret: xKT/6YEXF~lw;QpIqc<|A(]FV2{Ei([I#sAa_IiiFZcW)=|+7&7X5XpWs|_)67"
+    secret: ${JWT_SECRET}
     expiration: 10800000

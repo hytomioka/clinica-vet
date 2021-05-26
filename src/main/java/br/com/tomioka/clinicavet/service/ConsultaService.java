@@ -30,27 +30,27 @@ public class ConsultaService {
 
     @Transactional(readOnly = true)
     public Consulta buscaPorId(int id) {
-        Optional<Consulta> obj = repo.findById(id);
-        return obj.orElseThrow(
+        Optional<Consulta> consulta = repo.findById(id);
+        return consulta.orElseThrow(
                 () -> new ObjectNotFoundException("Consulta não encontrada. Id= " + id)
         );
     }
 
     @Transactional
     public Consulta insere(ConsultaNewDTO dto) {
-        Consulta obj = dto.converte(petService, veterinarioRepository);
-        obj = repo.save(obj);
-        return obj;
+        Consulta consulta = dto.converte(petService, veterinarioRepository);
+        consulta = repo.save(consulta);
+        return consulta;
     }
 
     @Transactional
     public Consulta atualiza(int id, ConsultaDTO dto) {
-        Consulta obj = dto.converte();
-        Consulta objDoBanco = buscaPorId(id);
-        objDoBanco.setHorario(obj.getHorario() != null ? obj.getHorario() : objDoBanco.getHorario());
-        objDoBanco.setDescricao(obj.getDescricao() != null ? obj.getDescricao() : objDoBanco.getDescricao());
-        obj = repo.save(objDoBanco);
-        return obj;
+        Consulta consulta = dto.converte();
+        Consulta consultaDoBanco = buscaPorId(id);
+        consultaDoBanco.setHorario(consulta.getHorario() != null ? consulta.getHorario() : consultaDoBanco.getHorario());
+        consultaDoBanco.setDescricao(consulta.getDescricao() != null ? consulta.getDescricao() : consultaDoBanco.getDescricao());
+        consulta = repo.save(consultaDoBanco);
+        return consulta;
     }
 
     @Transactional
@@ -60,7 +60,7 @@ public class ConsultaService {
     }
 
     public Page<ConsultaDTO> busca(Pageable paginacao) {
-        Page<Consulta> obj = repo.findAll(paginacao);
-        return obj.map(ConsultaDTO::new);
+        Page<Consulta> consulta = repo.findAll(paginacao);
+        return consulta.map(ConsultaDTO::new);
     }
 }

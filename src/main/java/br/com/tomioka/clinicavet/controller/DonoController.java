@@ -20,7 +20,6 @@ public class DonoController {
 
     DonoService donoService;
 
-    // Se houver um único construtor, é possível omitir @Autowired
     public DonoController(DonoService donoService) {
         this.donoService = donoService;
     }
@@ -34,26 +33,26 @@ public class DonoController {
     @GetMapping
     public ResponseEntity<Page<DonoDTO>> busca(@PageableDefault Pageable paginacao,
                                                @RequestParam(required = false) String nome) {
-        Page<DonoDTO> obj;
+        Page<DonoDTO> dono;
         if (nome == null) {
-            obj = donoService.busca(paginacao);
+            dono = donoService.busca(paginacao);
         } else {
-            obj = donoService.buscaPorNome(nome, paginacao);
+            dono = donoService.buscaPorNome(nome, paginacao);
         }
-        return ResponseEntity.ok().body(obj);
+        return ResponseEntity.ok().body(dono);
     }
 
     @PostMapping
     public ResponseEntity<Void> insere(@Valid @RequestBody DonoNewDTO dto) {
-        Dono obj = donoService.inserir(dto);
+        Dono dono = donoService.inserir(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(obj.getId()).toUri();
+                .path("/{id}").buildAndExpand(dono.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Void> atualiza(@Valid @RequestBody DonoDTO dto, @PathVariable("id") int id) {
-        Dono obj = donoService.atualiza(id, dto);
+        Dono dono = donoService.atualiza(id, dto);
         return ResponseEntity.noContent().build();
     }
 

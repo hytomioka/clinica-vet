@@ -29,27 +29,27 @@ public class PetService {
 
     @Transactional(readOnly = true)
     public Pet buscaPorId(int id) {
-        Optional<Pet> obj = repo.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundException(
+        Optional<Pet> pet = repo.findById(id);
+        return pet.orElseThrow(() -> new ObjectNotFoundException(
                 "Pet não encontrado. Id= " + id
         ));
     }
 
     @Transactional
     public Pet insere(PetNewDTO dto) {
-        Pet obj = dto.converte(donoRepository);
-        repo.save(obj);
-        return obj;
+        Pet pet = dto.converte(donoRepository);
+        repo.save(pet);
+        return pet;
     }
 
     @Transactional
     public Pet atualiza(PetNewDTO dto, int id) {
-        Pet obj = dto.converte(donoRepository);
-        Pet objDoBanco = buscaPorId(id);
-        objDoBanco.setNome(obj.getNome() != null ? obj.getNome() : objDoBanco.getNome());
-        objDoBanco.setIdade(obj.getIdade() != null ? obj.getIdade() : objDoBanco.getIdade());
-        obj = repo.save(objDoBanco);
-        return obj;
+        Pet pet = dto.converte(donoRepository);
+        Pet petDoBanco = buscaPorId(id);
+        petDoBanco.setNome(pet.getNome() != null ? pet.getNome() : petDoBanco.getNome());
+        petDoBanco.setIdade(pet.getIdade() != null ? pet.getIdade() : petDoBanco.getIdade());
+        pet = repo.save(petDoBanco);
+        return pet;
     }
 
     @Transactional
@@ -61,7 +61,7 @@ public class PetService {
 
     @Transactional(readOnly = true)
     public Page<PetDTO> busca(Pageable paginacao) {
-        Page<Pet> obj = repo.findAll(paginacao);
-        return obj.map(PetDTO::new);
+        Page<Pet> pet = repo.findAll(paginacao);
+        return pet.map(PetDTO::new);
     }
 }

@@ -35,11 +35,15 @@ public class ConsultaNewDTO {
     public ConsultaNewDTO() {
     }
 
-    public ConsultaNewDTO(Consulta consulta) {
+    private ConsultaNewDTO(Consulta consulta) {
         this.horario = consulta.getHorario();
         this.petId = consulta.getPet().getId();
         this.vetEmail = consulta.getVeterinario().getEmail();
         this.descricao = consulta.getDescricao();
+    }
+
+    public static ConsultaNewDTO novaConsultaFactory(Consulta consulta) {
+        return new ConsultaNewDTO(consulta);
     }
 
     public Consulta converte(PetService petService, VeterinarioRepository vetRepository) {

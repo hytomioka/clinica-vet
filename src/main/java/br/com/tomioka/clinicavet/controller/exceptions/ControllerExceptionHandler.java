@@ -1,4 +1,4 @@
-package br.com.tomioka.clinicavet.controller;
+package br.com.tomioka.clinicavet.controller.exceptions;
 
 import br.com.tomioka.clinicavet.configuration.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;

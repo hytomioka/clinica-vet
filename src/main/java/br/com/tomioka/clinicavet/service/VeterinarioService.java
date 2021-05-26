@@ -25,28 +25,28 @@ public class VeterinarioService {
 
     @Transactional(readOnly = true)
     public Veterinario buscaPorId(int id) {
-        Optional<Veterinario> obj = repo.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundException(
+        Optional<Veterinario> vet = repo.findById(id);
+        return vet.orElseThrow(() -> new ObjectNotFoundException(
                 "Veterinario não encontrado. Id= " + id
         ));
     }
 
     @Transactional
     public Veterinario insere(VeterinarioNewDTO dto) {
-        Veterinario obj = dto.converte();
-        obj = repo.save(obj);
-        return obj;
+        Veterinario vet = dto.converte();
+        vet = repo.save(vet);
+        return vet;
     }
 
     @Transactional
     public Veterinario atualiza(Veterinario vet, int id) {
-        Veterinario objDoBanco = buscaPorId(id);
-        objDoBanco.setEmail(vet.getEmail() != null ? vet.getEmail() : objDoBanco.getEmail());
-        objDoBanco.setIdade(vet.getIdade() != null ? vet.getIdade() : objDoBanco.getIdade());
-        objDoBanco.setEspecialidade(vet.getEspecialidade() != null
-                ? vet.getEspecialidade() : objDoBanco.getEspecialidade());
-        Veterinario obj = repo.save(objDoBanco);
-        return obj;
+        Veterinario vetDoBanco = buscaPorId(id);
+        vetDoBanco.setEmail(vet.getEmail() != null ? vet.getEmail() : vetDoBanco.getEmail());
+        vetDoBanco.setIdade(vet.getIdade() != null ? vet.getIdade() : vetDoBanco.getIdade());
+        vetDoBanco.setEspecialidade(vet.getEspecialidade() != null
+                ? vet.getEspecialidade() : vetDoBanco.getEspecialidade());
+        Veterinario vetSalvo = repo.save(vetDoBanco);
+        return vetSalvo;
     }
 
     @Transactional
@@ -56,7 +56,7 @@ public class VeterinarioService {
     }
 
     public Page<VeterinarioDTO> busca(Pageable paginacao) {
-        Page<Veterinario> obj = repo.findAll(paginacao);
-        return obj.map(VeterinarioDTO::new);
+        Page<Veterinario> vet = repo.findAll(paginacao);
+        return vet.map(VeterinarioDTO::new);
     }
 }
