@@ -14,7 +14,7 @@
     <name>clinica-vet</name>
     <description>Sistema de uma clinica veterinaria</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
     </properties>
     <dependencies>
         <dependency>
