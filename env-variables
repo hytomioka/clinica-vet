@@ -1,7 +1,7 @@
-
 export JDBC_DATABASE_URL=jdbc:postgresql://localhost:5432/clinica_vet
 export JDBC_DATABASE_USERNAME=postgres
 export JDBC_DATABASE_PASSWORD=2112
-
-
 export JWT_SECRET='xKT/6YEXF~lw;QpIqc<|A(]FV2{Ei([I#sAa_IiiFZcW)=|+7&7X5XpWs|_)67"'
+
+// local tests with docker
+jdbc:postgresql://db:5432/clinica_vet
